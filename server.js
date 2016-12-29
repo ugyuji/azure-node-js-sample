@@ -1,9 +1,6 @@
-var express = require("express");
+var express = require('express');
+var port = process.env.PORT || 1337;
 var app = express();
-
-var server = app.listen(1337, function(){
-    console.log("Node.js is listening to PORT:" + server.address().port);
-});
 
 var sensorList = [
     {
@@ -20,7 +17,11 @@ var sensorList = [
       humidity: "53",
     }
 ];
-
-app.get("/api/sensors/list", function(req, res, next){
-    res.json(sensorList);
+ 
+app.get('/api/sensors/list', function (req, res) {
+  res.json(sensorList);
+});
+ 
+app.listen(port, function () {
+  console.log('Example app listening on port ' + port + '!');
 });
