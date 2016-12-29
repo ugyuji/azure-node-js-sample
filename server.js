@@ -1,11 +1,26 @@
-var express = require('express');
-var port = process.env.PORT || 1337;
+var express = require("express");
 var app = express();
- 
-app.get('/', function (req, res) {
-  res.send('Hello Express World!');
+
+var server = app.listen(1337, function(){
+    console.log("Node.js is listening to PORT:" + server.address().port);
 });
- 
-app.listen(port, function () {
-  console.log('Example app listening on port ' + port + '!');
+
+var sensorList = [
+    {
+      id: "1",
+      building: "1",
+      floor: "5",
+      temperature: "28",
+      humidity: "50",
+    },{
+      id: "2",
+      building: "1",
+      floor: "2",
+      temperature: "27",
+      humidity: "53",
+    }
+];
+
+app.get("/api/sensors/list", function(req, res, next){
+    res.json(sensorList);
 });
